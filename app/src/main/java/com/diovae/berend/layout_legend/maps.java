@@ -1,6 +1,5 @@
 package com.diovae.berend.layout_legend;
 
-//import
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,9 +7,9 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
 
-//extra test leander
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -136,8 +135,10 @@ public class maps extends FragmentActivity implements OnMapReadyCallback {
 
 
         //Set boundaries
+        LatLng center = new LatLng(52.3816064,4.6485076);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(center));
         LatLngBounds Haarlem = new LatLngBounds(
-                new LatLng(52.3733, 4.6244), new LatLng(52.3982, 4.6418));
+                new LatLng(52.338906077209, 4.60050391528942), new LatLng(52.4259429154355, 4.68397248207025));
         mMap.setLatLngBoundsForCameraTarget(Haarlem);
     }
 }
