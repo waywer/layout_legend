@@ -1,6 +1,6 @@
 package com.diovae.berend.layout_legend;
 
-
+//import
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
