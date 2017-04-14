@@ -32,7 +32,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="com.diovae.berend.layout_legend.MainActivity" />
 
@@ -43,7 +43,7 @@
             android:name=".detail"
             android:configChanges="keyboardHidden|orientation"
             android:label="detail"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="com.diovae.berend.layout_legend.detail" />
 
@@ -64,7 +64,7 @@
 
         <activity
             android:name=".splash_screen"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
