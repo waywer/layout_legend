@@ -1,14 +1,10 @@
 package com.diovae.berend.layout_legend;
 
-
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -19,9 +15,8 @@ import android.widget.Switch;
 
 import java.io.IOException;
 
-
-
 public class detail extends AppCompatActivity implements SurfaceHolder.Callback {
+
 
     @SuppressWarnings("deprecation")
     Camera camera; // camera class variable

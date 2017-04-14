@@ -1,10 +1,14 @@
 package com.diovae.berend.layout_legend;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.AppIndex;
@@ -13,13 +17,19 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class maps extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
@@ -50,6 +60,11 @@ public class maps extends FragmentActivity implements OnMapReadyCallback {
 
                     TextView tvHaarlem = (TextView) v.findViewById(R.id.tvHaarlem);
                     TextView tvSnippet = (TextView) v.findViewById(R.id.tvNoord_Holland);
+                    String image_id = new String(marker.getTitle());
+                    int resID = getResources().getIdentifier(image_id, "drawable", getApplicationContext().getPackageName());
+                    ImageView img = (ImageView) v.findViewById(R.id.map_image);
+                    Log.d("ADebugTag", "Value: " + img);
+                    img.setImageResource(resID);
 
                     LatLng ll = marker.getPosition();
                     tvHaarlem.setText(marker.getTitle());
@@ -68,7 +83,9 @@ public class maps extends FragmentActivity implements OnMapReadyCallback {
             mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                 @Override
                 public void onInfoWindowClick(Marker marker) {
+                    String image_id = new String(marker.getTitle());
                     Intent intent = new Intent(maps.this, MainActivity.class);
+                    intent.putExtra("image_id",image_id);
                     startActivity(intent);
                 }
             });
@@ -120,27 +137,52 @@ public class maps extends FragmentActivity implements OnMapReadyCallback {
                 .fillColor(0x15FF0000);
         Polygon polygon = mMap.addPolygon(rectOptions);
 
-
-        //Add Marker
-        MarkerOptions options = new MarkerOptions()
-                .title("Paviljoen Welgelegen")
-                .snippet("Manifestatie")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_mapmarker))
-                .position(new LatLng(52.3716064, 4.6285076));
-        mMap.addMarker(options);
-
         //Set min and max zoom
         mMap.setMinZoomPreference(12.0f);
         mMap.setMaxZoomPreference(20.0f);
 
 
         //Set boundaries
-        LatLng center = new LatLng(52.3816064,4.6485076);
+        LatLng center = new LatLng(52.3816064, 4.6485076);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(center));
         LatLngBounds Haarlem = new LatLngBounds(
                 new LatLng(52.338906077209, 4.60050391528942), new LatLng(52.4259429154355, 4.68397248207025));
         mMap.setLatLngBoundsForCameraTarget(Haarlem);
+
+        if ((ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+                ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
+            mMap.setMyLocationEnabled(true);
+        }
+
+
+        InputStream instream = getResources().openRawResource(R.raw.points_in_map);
+        InputStreamReader inputreader = new InputStreamReader(instream);
+        BufferedReader reader = new BufferedReader(inputreader);
+        List<LatLng> latLngList = new ArrayList<LatLng>();
+        String line = "";
+
+        try {
+            while ((line = reader.readLine()) != null) // Read until end of file
+            {
+                double lat = Double.parseDouble(line.split(";")[1]);
+                double lon = Double.parseDouble(line.split(";")[2]);
+                String title_marker = new String(line.split(";")[3]);
+                String description_marker = new String(line.split(";")[4]);
+                LatLng pos = new LatLng(lat, lon);
+
+                //coordinates too map
+                mMap.addMarker(new MarkerOptions()
+                        .title(String.valueOf(title_marker))
+                        .snippet(String.valueOf(description_marker))
+                        .position(pos));
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
 }
 
 
