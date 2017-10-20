@@ -24,6 +24,7 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
     SurfaceHolder surfaceHolder; // variable to hold surface for surfaceView which means display
     boolean camCondition = false;  // conditional variable for camera preview checking and set to false
 
+    
     @SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +44,8 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
         // to set surface type
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_NORMAL);
 
-        // TODO keep the button switched if mobile is switched
-        final Switch camera_switch =(Switch) findViewById(R.id.camera_button); // when switch is pushed: make background image (in)visible
+        //when switch is pushed: make background image (in)visible
+        final Switch camera_switch =(Switch) findViewById(R.id.camera_button);
         camera_switch.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -104,7 +105,6 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
         }
     }
 
-
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         // TODO Auto-generated method stub
@@ -118,6 +118,14 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
         }
         else if(rotation == Surface.ROTATION_270){
             camera.setDisplayOrientation(180);   // setting camera preview orientation to reverse landscape
+        }
+        //If the camera switch is active, keep camera on.
+        final Switch camera_position = (Switch) findViewById(R.id.camera_button);
+        final ImageView background_image = (ImageView) findViewById(R.id.imageView6);
+        if (camera_position.isChecked()){
+            background_image.setVisibility(View.INVISIBLE);
+        } else {
+            background_image.setVisibility(View.VISIBLE);
         }
     }
 
@@ -135,4 +143,3 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
         super.onConfigurationChanged(newConfig); // restart activity for the camera orientation.
     }
 }
-
