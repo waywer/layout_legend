@@ -1,9 +1,10 @@
 package com.diovae.berend.layout_legend;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,17 +15,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        String image_id = new String(getIntent().getStringExtra("image_id"));
+        final String image_id = new String(getIntent().getStringExtra("image_id"));
         ImageView dynamic_image = (ImageView) findViewById(R.id.WarImage);
         int resID = getResources().getIdentifier(image_id, "drawable", getApplicationContext().getPackageName());
         dynamic_image.setImageResource(resID);
@@ -37,11 +38,10 @@ public class MainActivity extends AppCompatActivity {
         try {
             while ((line = reader.readLine()) != null) // Read until end of file
             {
-                String id = new String(line.split(";")[3]);
-                String datum = new String(line.split(";")[5]);
-                String location = new String(line.split(";")[6]);
-                String description = new String(line.split(";")[7]);
-                if (id == image_id) {
+                if (Objects.equals(image_id, line.split(";")[0])) {
+                    String datum = new String(line.split(";")[5]);
+                    String location = new String(line.split(";")[6]);
+                    String description = new String(line.split(";")[7]);
                     TextView text_datum = (TextView) findViewById(R.id.textView5);
                     TextView text_location = (TextView) findViewById(R.id.textView7);
                     TextView text_description = (TextView) findViewById(R.id.textView8);
@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -78,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void detail(View view){
         Intent intent = new Intent(this, detail.class);
+        String detail_image_id = new String(getIntent().getStringExtra("image_id"));
+        intent.putExtra("detail_image_id",detail_image_id);
         startActivity(intent);
     }
 }

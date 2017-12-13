@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
-    >
+    android:layout_margin="15dp"
+    android:layout_marginBottom="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:background="@drawable/border"
+    android:orientation="horizontal"
+    android:padding="2dp">
 
     <ImageView
         android:id="@+id/map_image"
@@ -13,25 +20,37 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_welgelegen" />
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:onClick="sendmessage">
+        android:onClick="sendmessage"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvHaarlem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="#fcfcfc"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/tvNoord_Holland"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintRight_creator="1" />
 
         <TextView
             android:id="@+id/tvNoord_Holland"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"/>
+            android:paddingLeft="2dp"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@+id/tvHaarlem"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_editor_absoluteX="100dp" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>

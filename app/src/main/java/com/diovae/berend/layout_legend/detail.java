@@ -28,9 +28,19 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
     @SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);// get layout of detail screen(image)
+
+        final String image_id = new String(getIntent().getStringExtra("detail_image_id"));
+        ImageView dynamic_image = (ImageView) findViewById(R.id.detail_warImage);
+        int resID = getResources().getIdentifier(image_id, "drawable", getApplicationContext().getPackageName());
+        dynamic_image.setImageResource(resID);
+
+        ImageView dynamic_image_new = (ImageView) findViewById(R.id.imageView6);
+        int resID_new_image = getResources().getIdentifier(image_id + "_new", "drawable", getApplicationContext().getPackageName());
+        dynamic_image_new.setImageResource(resID_new_image);
+
+
         final SeekBar seeker = (SeekBar) findViewById(R.id.seekBar);
         // getWindow() to get window and set it's pixel format which is UNKNOWN
         getWindow().setFormat(PixelFormat.UNKNOWN);
@@ -83,7 +93,6 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width,
                                int height) {
-        // TODO Auto-generated method stub
         // stop the camera
         if(camCondition){
             camera.stopPreview(); // stop preview using stopPreview() method
@@ -99,7 +108,6 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
 
                 camCondition = true; // setting camera to true which means having camera
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -107,7 +115,6 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        // TODO Auto-generated method stub
         int rotation = getWindowManager().getDefaultDisplay().getRotation();//get ready to rotate
         camera = Camera.open();   // opening camera
         if(rotation == Surface.ROTATION_0){
@@ -132,7 +139,6 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        // TODO Auto-generated method stub
         camera.stopPreview();  // stopping camera preview
         camera.release();       // releasing camera
         camera = null;          // setting camera to null when left
