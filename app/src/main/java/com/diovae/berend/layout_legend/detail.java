@@ -31,12 +31,12 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);// get layout of detail screen(image)
 
-        final String image_id = new String(getIntent().getStringExtra("detail_image_id"));
-        ImageView dynamic_image = (ImageView) findViewById(R.id.detail_warImage);
+        final String image_id = getIntent().getStringExtra("detail_image_id");
+        ImageView dynamic_image = (ImageView) findViewById(R.id.OldImage);
         int resID = getResources().getIdentifier(image_id, "drawable", getApplicationContext().getPackageName());
         dynamic_image.setImageResource(resID);
 
-        ImageView dynamic_image_new = (ImageView) findViewById(R.id.imageView6);
+        ImageView dynamic_image_new = (ImageView) findViewById(R.id.NowImage);
         int resID_new_image = getResources().getIdentifier(image_id + "_new", "drawable", getApplicationContext().getPackageName());
         dynamic_image_new.setImageResource(resID_new_image);
 
@@ -46,7 +46,7 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
         getWindow().setFormat(PixelFormat.UNKNOWN);
         // refering the id of surfaceView
         camView = (SurfaceView) findViewById(R.id.camerapreview);
-        final ImageView background_image = (ImageView) findViewById(R.id.imageView6);
+        final ImageView background_image = (ImageView) findViewById(R.id.NowImage);
         // getting access to the surface of surfaceView and return it to surfaceHolder
         surfaceHolder = camView.getHolder();
         // adding call back to this context means MainActivity
@@ -73,10 +73,10 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
         seeker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) { //if the seekbar value is changed, start process
-                ImageView image = (ImageView) findViewById(R.id.detail_warImage);// image that will be change by the seekbar
+                ImageView image = (ImageView) findViewById(R.id.OldImage);// image that will be change by the seekbar
 
-                float waarde = seeker.getProgress(); // create variable that has the value of the seekbar
-                image.setAlpha(waarde/255);// set alpha value of the image the same as the value of the seekbar
+                float Value = seeker.getProgress(); // create variable that has the value of the seekbar
+                image.setAlpha(Value/255);// set alpha value of the image the same as the value of the seekbar
             }
 
             @Override// isn't used for the seekbar in this project but is needed
@@ -128,7 +128,7 @@ public class detail extends AppCompatActivity implements SurfaceHolder.Callback 
         }
         //If the camera switch is active, keep camera on.
         final Switch camera_position = (Switch) findViewById(R.id.camera_button);
-        final ImageView background_image = (ImageView) findViewById(R.id.imageView6);
+        final ImageView background_image = (ImageView) findViewById(R.id.NowImage);
         if (camera_position.isChecked()){
             background_image.setVisibility(View.INVISIBLE);
         } else {

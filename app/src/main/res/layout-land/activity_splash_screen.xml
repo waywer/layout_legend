@@ -8,7 +8,7 @@
     tools:context="com.diovae.berend.layout_legend.splash_screen">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/DiovaeLogo"
         android:layout_width="201dp"
         android:layout_height="290dp"
         app:srcCompat="@drawable/logo_diovae"
@@ -19,12 +19,12 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/imageView"
+        app:layout_constraintRight_toLeftOf="@+id/DiovaeText"
         android:layout_marginRight="8dp"
         app:layout_constraintVertical_bias="0.509" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/DiovaeText"
         android:layout_width="323dp"
         android:layout_height="202dp"
         app:srcCompat="@drawable/logo_diovae_tekst"

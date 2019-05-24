@@ -9,13 +9,15 @@
     tools:context="com.diovae.berend.layout_legend.MainActivity"
     android:background="#fff2f2" >
 
-    <include layout="@layout/content_main" />
+    <include
+        layout="@layout/content_main"
+        android:layout_height="534dp" />
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
-        android:fitsSystemWindows="true"
-        android:layout_height="283dp"
         android:layout_width="match_parent"
+        android:layout_height="283dp"
+        android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.constraint.ConstraintLayout
@@ -31,7 +33,7 @@
             <ImageView
                 android:id="@+id/WarImage"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="291dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:onClick="detail"
@@ -49,8 +51,20 @@
                 android:id="@+id/toolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/WarImage"
+                app:layout_constraintEnd_toEndOf="@+id/WarImage"
+                app:srcCompat="@drawable/fullscreen_30" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.design.widget.AppBarLayout>

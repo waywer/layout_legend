@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/LabelDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -27,7 +27,7 @@
             tools:layout_constraintTop_creator="1" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/Story"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -39,37 +39,37 @@
             app:layout_constraintHorizontal_bias="0.53"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintTop_toBottomOf="@+id/Location" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/Date"
             android:layout_width="295dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="5 mei 1945"
-            app:layout_constraintLeft_toRightOf="@+id/textView4"
+            app:layout_constraintLeft_toRightOf="@+id/LabelDate"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/LabelLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Locatie"
-            app:layout_constraintLeft_toLeftOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintLeft_toLeftOf="@+id/LabelDate"
+            app:layout_constraintTop_toBottomOf="@+id/Date" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/Location"
             android:layout_width="295dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="De Dam, Amsterdam"
-            app:layout_constraintLeft_toRightOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintLeft_toRightOf="@+id/LabelDate"
+            app:layout_constraintTop_toBottomOf="@+id/Date" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v4.widget.NestedScrollView>

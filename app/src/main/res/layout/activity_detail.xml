@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/NowImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
@@ -32,7 +32,7 @@
         tools:layout_constraintLeft_creator="1"/>
 
     <ImageView
-        android:id="@+id/detail_warImage"
+        android:id="@+id/OldImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
